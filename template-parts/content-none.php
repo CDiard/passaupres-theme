@@ -20,7 +20,6 @@
 
 			printf(
 				'<p>' . wp_kses(
-					/* translators: 1: link to WP admin new post page. */
 					__( 'Prêt à publier votre premier article ? <a href="%1$s">Commencez ici</a>.', 'template-wordpress' ),
 					array(
 						'a' => array(

@@ -20,9 +20,6 @@ if ( ! defined( '_S_VERSION' ) ) {
  * as indicating support for post thumbnails.
  */
 function template_wordpress_setup() {
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
-
 	/*
 		* Let WordPress manage the document title.
 		* By adding theme support, we declare that this theme does not use a
@@ -41,7 +38,7 @@ function template_wordpress_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'template-wordpress' ),
+			'primary-menu' => esc_html__( 'Menu principal', 'template-wordpress' ),
 		)
 	);
 
@@ -53,8 +50,6 @@ function template_wordpress_setup() {
 		'html5',
 		array(
 			'search-form',
-			'comment-form',
-			'comment-list',
 			'gallery',
 			'caption',
 			'style',
@@ -95,18 +90,6 @@ function template_wordpress_setup() {
 add_action( 'after_setup_theme', 'template_wordpress_setup' );
 
 /**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
-function template_wordpress_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'template_wordpress_content_width', 640 );
-}
-add_action( 'after_setup_theme', 'template_wordpress_content_width', 0 );
-
-/**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
@@ -137,7 +120,7 @@ function template_wordpress_scripts() {
         'bootstrap-css',
         get_template_directory_uri() . '/node_modules/bootstrap/dist/css/bootstrap.min.css',
         [],
-        '5.3.3'
+        '5.3.8'
     );
 
     // Load the main theme CSS (style.css required by WordPress)
@@ -173,11 +156,6 @@ function template_wordpress_scripts() {
         $theme_version,
         true
     );
-
-	wp_enqueue_style( 'template-wordpress-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'template-wordpress-style', 'rtl', 'replace' );
-
-	wp_enqueue_script( 'template-wordpress-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', 'template_wordpress_scripts' );
 
