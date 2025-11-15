@@ -19,7 +19,7 @@ if (!defined('_S_VERSION')) {
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function template_wordpress_setup()
+function template_wordpress_setup(): void
 {
     /**
      * Let WordPress manage the document title.
@@ -81,7 +81,7 @@ add_action('after_setup_theme', 'template_wordpress_setup');
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function template_wordpress_widgets_init()
+function template_wordpress_widgets_init(): void
 {
     register_sidebar(
         array(
@@ -101,7 +101,7 @@ add_action('widgets_init', 'template_wordpress_widgets_init');
 /**
  * Enqueue scripts and styles.
  */
-function template_wordpress_scripts()
+function template_wordpress_scripts(): void
 {
     $theme_version = wp_get_theme()->get('Version');
 
