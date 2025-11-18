@@ -51,7 +51,6 @@ $echo_functions = [
     'wp_head',
     'wp_footer',
     'wp_body_open',
-    'the_custom_logo',
     'the_posts_pagination',
 ];
 
@@ -81,6 +80,18 @@ $twig->addFunction(new TwigFunction('wp_nav_menu', function ($args = []) {
     return wp_nav_menu($args);
 }, ['is_safe' => ['html']]));
 
+$twig->addFunction(new TwigFunction('flat_menu', function ($location, $classes = '') {
+
+    return wp_nav_menu([
+        'theme_location' => $location,
+        'container' => false,
+        'echo' => false,
+        'walker' => new Walker_Nav_Flat(),
+        'items_wrap' => '<nav class="' . esc_attr($classes) . '">%3$s</nav>',
+    ]);
+
+}, ['is_safe' => ['html']]));
+
 
 /**
  * ------------------------------------------------------------
@@ -102,6 +113,9 @@ foreach ($return_functions as $twig_name => $wp_function) {
     }, ['is_safe' => ['html']]));
 }
 
+$twig->addFunction(new TwigFunction('the_custom_logo', function () {
+    return get_custom_logo();
+}, ['is_safe' => ['html']]));
 
 /**
  * ------------------------------------------------------------

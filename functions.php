@@ -176,3 +176,10 @@ add_action('admin_menu', 'template_wordpress_remove_menus');
 add_action('after_setup_theme', function () {
     require get_template_directory() . '/inc/twig-init.php';
 });
+
+/**
+ * Menu custom.
+ */
+add_action('after_setup_theme', function () {
+    require get_template_directory() . '/inc/menu.php';
+});
