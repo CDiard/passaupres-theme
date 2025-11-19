@@ -12,6 +12,9 @@ if (!defined('_S_VERSION')) {
     define('_S_VERSION', '1.0.0');
 }
 
+// Import config file
+require_once get_template_directory() . '/configs/config.php';
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -86,7 +89,7 @@ function template_wordpress_widgets_init(): void
     register_sidebar(
         array(
             'name' => esc_html__('Barre latérale', 'template-wordpress'),
-            'id' => 'sidebar-1',
+            'id' => TEMPLATE_WP_SIDEBAR_ID,
             'description' => esc_html__('Ajoutez des widgets ici.', 'template-wordpress'),
             'before_widget' => '<section id="%1$s" class="widget %2$s">',
             'after_widget' => '</section>',
@@ -167,7 +170,6 @@ function template_wordpress_remove_menus(): void
     }
 }
 
-;
 add_action('admin_menu', 'template_wordpress_remove_menus');
 
 /**

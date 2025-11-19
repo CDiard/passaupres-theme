@@ -117,6 +117,18 @@ $twig->addFunction(new TwigFunction('the_custom_logo', function () {
     return get_custom_logo();
 }, ['is_safe' => ['html']]));
 
+
+/**
+ * ------------------------------------------------------------
+ * CONSTANT
+ * ------------------------------------------------------------
+ */
+
+$twig->addFunction(new TwigFunction('constant', function($name) {
+    return defined($name) ? constant($name) : null;
+}));
+
+
 /**
  * ------------------------------------------------------------
  * TRANSLATION
