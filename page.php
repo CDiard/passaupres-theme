@@ -12,4 +12,13 @@
  * @package Template_WordPress
  */
 
+$page_id = get_the_ID();
+
+$controllers = get_page_controllers();
+
+if (array_key_exists($page_id, $controllers)) {
+    include_once 'controllers/' . $controllers[$page_id];
+    return;
+}
+
 include_once 'controllers/page.php';
