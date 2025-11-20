@@ -173,6 +173,32 @@ foreach ($boolean_functions as $func) {
 
 /**
  * ------------------------------------------------------------
+ * IMPORT ICONS
+ * ------------------------------------------------------------
+ */
+
+$twig->addFunction(new TwigFunction('svg_icon', function ($name) {
+    $path = get_template_directory() . "/assets/icons/{$name}.svg";
+
+    if (!file_exists($path)) {
+        return "<!-- SVG '{$name}' not found -->";
+    }
+
+    $svg = file_get_contents($path);
+
+    if (preg_match('/class="([^"]*)"/', $svg, $matches)) {
+        $existing = $matches[1] . ' custom-icon';
+        $svg = preg_replace('/class="[^"]*"/', 'class="' . esc_attr($existing) . '"', $svg, 1);
+    } else {
+        $svg = preg_replace('/<svg([^>]*)>/', '<svg$1 class="custom-icon">', $svg, 1);
+    }
+
+    return $svg;
+}, ['is_safe' => ['html']]));
+
+
+/**
+ * ------------------------------------------------------------
  * PAGE CONTEXT → to avoid writing PHP code in page.php
  * ------------------------------------------------------------
  */
