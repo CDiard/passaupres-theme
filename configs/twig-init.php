@@ -105,6 +105,7 @@ $return_functions = [
     'get_the_title' => 'get_the_title',
     'get_the_excerpt' => 'get_the_excerpt',
     'get_the_permalink' => 'get_permalink',
+    'get_search_query' => 'get_search_query',
 ];
 
 foreach ($return_functions as $twig_name => $wp_function) {
@@ -146,8 +147,8 @@ $twig->addFunction(new TwigFunction('__', function ($text, $domain = null) {
  * ------------------------------------------------------------
  */
 
-$twig->addFunction(new TwigFunction('get_search_form', function ($echo = false) {
-    return get_search_form($echo);
+$twig->addFunction(new TwigFunction('search_form', function () use ($twig) {
+    return $twig->render('components/search.twig');
 }, ['is_safe' => ['html']]));
 
 

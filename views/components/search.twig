@@ -1,0 +1,7 @@
+<form class="w-100 d-flex flex-row justify-content-center align-items-center gap-2" role="search" method="get" action="{{ home_url('/') }}">
+    <input class="form-control" type="search" name="s" placeholder="Recherche…" value="{{ get_search_query() }}"
+           aria-label="Rechercher">
+    <button type="submit" class="btn btn-primary" aria-label="Rechercher">
+        {{ svg_icon('search')|raw }}
+    </button>
+</form>
