@@ -1,0 +1,29 @@
+.darkmode-site {
+    .dark-mode-toggle {
+        display: none;
+    }
+}
+
+[data-bs-theme="dark"] {
+    .darkmode-site {
+        .dark-mode-toggle {
+            display: none;
+        }
+
+        .light-mode-toggle {
+            display: inline;
+        }
+    }
+}
+
+[data-bs-theme="light"] {
+    .darkmode-site {
+        .dark-mode-toggle {
+            display: inline;
+        }
+
+        .light-mode-toggle {
+            display: none;
+        }
+    }
+}

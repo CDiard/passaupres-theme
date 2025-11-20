@@ -24,7 +24,7 @@
 }
 
 /* Dark theme class for manual toggle */
-.dark-theme {
+[data-bs-theme="dark"] {
     --site-color-primary: #d5802a;
     --site-color-secondary: #75420f;
     --site-color-accent: #b05e0c;
