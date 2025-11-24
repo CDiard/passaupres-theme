@@ -242,16 +242,21 @@ $twig->addFunction(new TwigFunction('get_posts_context', function ($args = []) {
         while ($query->have_posts()) {
             $query->the_post();
 
+            $thumbnail_id  = get_post_thumbnail_id(get_the_ID());
+            $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
+            $thumbnail_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
+
             $posts[] = [
-                'id'        => get_the_ID(),
-                'title'     => get_the_title(),
-                'excerpt'   => get_the_excerpt(),
-                'content'   => apply_filters('the_content', get_the_content()),
-                'permalink' => get_permalink(),
-                'date'      => get_the_date(),
-                'author'    => get_the_author(),
-                'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'large'),
-                'post_type' => get_post_type(),
+                'id'            => get_the_ID(),
+                'title'         => get_the_title(),
+                'excerpt'       => get_the_excerpt(),
+                'content'       => apply_filters('the_content', get_the_content()),
+                'permalink'     => get_permalink(),
+                'date'          => get_the_date(),
+                'author'        => get_the_author(),
+                'thumbnail'     => $thumbnail_url,
+                'thumbnail_alt' => $thumbnail_alt ?: get_the_title(),
+                'post_type'     => get_post_type(),
             ];
         }
         wp_reset_postdata();

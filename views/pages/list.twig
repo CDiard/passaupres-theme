@@ -16,18 +16,10 @@
 
     <section class="list-page">
         <div class="container">
-            <div class="row">
+            <div class="row gap-3">
                 {% if posts|length > 0 %}
                     {% for post in posts %}
-                        <article class="col-12 col-md-6 col-xl-3">
-                            {% if post.thumbnail %}
-                                <img src="{{ post.thumbnail }}" alt="{{ post.title }}">
-                            {% endif %}
-
-                            <h2><a href="{{ post.permalink }}">{{ post.title|raw }}</a></h2>
-                            <p>{{ post.excerpt|raw }}</p>
-                            <small>{{ post.date }} - {{ post.author }}</small>
-                        </article>
+                        {% include "components/card.twig" %}
                     {% endfor %}
                 {% else %}
                     <div class="col-12">

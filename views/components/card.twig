@@ -1,0 +1,12 @@
+<article class="card col-12 col-md-6 col-xl-3 position-relative">
+    {% if post.thumbnail %}
+        <img class="card-img-top" src="{{ post.thumbnail }}" alt="{{ post.thumbnail_alt }}">
+    {% endif %}
+
+    <div class="card-body">
+        <h5 class="card-title">{{ post.title|raw }}</h5>
+        <p class="card-text">{{ post.excerpt|raw }}</p>
+        <p class="card-text"><small class="text-body-secondary">{{ post.date }} - {{ post.author }}</small></p>
+        <a href="{{ post.permalink }}" class="btn btn-secondary stretched-link">En savoir plus</a>
+    </div>
+</article>
