@@ -1,7 +1,7 @@
 {
-  "name": "template-wordpress",
+  "name": "passaupres-theme",
   "version": "1.0.0",
-  "description": "Template for a custom WordPress theme",
+  "description": "PassAuPrés a custom WordPress theme",
   "author": "Corentin Diard",
   "license": "GPL-2.0-or-later",
   "keywords": [
@@ -11,10 +11,10 @@
   "homepage": "https://corentindiard.fr",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CDiard/template-wordpress.git"
+    "url": "git+https://github.com/CDiard/passaupres-theme.git"
   },
   "bugs": {
-    "url": "https://github.com/CDiard/template-wordpress/issues"
+    "url": "https://github.com/CDiard/passaupres-theme/issues"
   },
   "devDependencies": {
     "@wordpress/scripts": "^19.2.2",

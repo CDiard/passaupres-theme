@@ -1,17 +1,17 @@
 {
-    "name": "cdiard/template-wordpress",
+    "name": "cdiard/passaupres-theme",
     "type": "wordpress-theme",
-    "description": "Template for a custom WordPress theme",
+    "description": "PassAuPres a custom WordPress theme",
     "keywords": [
         "WordPress",
         "Themes"
     ],
-    "homepage": "https://github.com/CDiard/template-wordpress",
+    "homepage": "https://github.com/CDiard/passaupres-theme",
     "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Contributors",
-            "homepage": "https://github.com/CDiard/template-wordpress/graphs/contributors"
+            "homepage": "https://github.com/CDiard/passaupres-theme/graphs/contributors"
         }
     ],
     "require": {
@@ -28,8 +28,8 @@
         "lint:php": "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor ."
     },
     "support": {
-        "issues": "https://github.com/CDiard/template-wordpress/issues",
-        "source": "https://github.com/CDiard/template-wordpress"
+        "issues": "https://github.com/CDiard/passaupres-theme/issues",
+        "source": "https://github.com/CDiard/passaupres-theme"
     },
     "config": {
         "allow-plugins": {

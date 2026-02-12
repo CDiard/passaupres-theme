@@ -9,7 +9,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Template_WordPress
+ * @package PassAuPres_Theme
  */
 
 $page_id = get_the_ID();

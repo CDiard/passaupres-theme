@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Creating_an_Error_404_Page
  *
- * @package Template_WordPress
+ * @package PassAuPres_Theme
  */
 
 include_once 'controllers/404.php';

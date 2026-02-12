@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
- * @package Template_WordPress
+ * @package PassAuPres_Theme
  */
 
 include_once 'controllers/single.php';

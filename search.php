@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
  *
- * @package Template_WordPress
+ * @package PassAuPres_Theme
  */
 
 include_once 'controllers/search.php';

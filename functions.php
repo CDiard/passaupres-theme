@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Template_WordPress
+ * @package PassAuPres_Theme
  */
 
 if (!defined('_S_VERSION')) {
@@ -22,7 +22,7 @@ require_once get_template_directory() . '/configs/config.php';
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function template_wordpress_setup(): void
+function passaupres_theme_setup(): void
 {
     /**
      * Let WordPress manage the document title.
@@ -42,7 +42,7 @@ function template_wordpress_setup(): void
     // This theme uses wp_nav_menu() in one location.
     register_nav_menus(
         array(
-            'primary-menu' => esc_html__('Menu principal', 'template-wordpress'),
+            'primary-menu' => esc_html__('Menu principal', 'passaupres-theme'),
         )
     );
 
@@ -77,20 +77,20 @@ function template_wordpress_setup(): void
     );
 }
 
-add_action('after_setup_theme', 'template_wordpress_setup');
+add_action('after_setup_theme', 'passaupres_theme_setup');
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function template_wordpress_widgets_init(): void
+function passaupres_theme_widgets_init(): void
 {
     register_sidebar(
         array(
-            'name' => esc_html__('Barre latérale', 'template-wordpress'),
+            'name' => esc_html__('Barre latérale', 'passaupres-theme'),
             'id' => TEMPLATE_WP_SIDEBAR_ID,
-            'description' => esc_html__('Ajoutez des widgets ici.', 'template-wordpress'),
+            'description' => esc_html__('Ajoutez des widgets ici.', 'passaupres-theme'),
             'before_widget' => '<section id="%1$s" class="widget %2$s">',
             'after_widget' => '</section>',
             'before_title' => '<h2 class="widget-title">',
@@ -99,12 +99,12 @@ function template_wordpress_widgets_init(): void
     );
 }
 
-add_action('widgets_init', 'template_wordpress_widgets_init');
+add_action('widgets_init', 'passaupres_theme_widgets_init');
 
 /**
  * Enqueue scripts and styles.
  */
-function template_wordpress_scripts(): void
+function passaupres_theme_scripts(): void
 {
     $theme_version = wp_get_theme()->get('Version');
 
@@ -160,12 +160,14 @@ function template_wordpress_scripts(): void
     );
 }
 
-add_action('wp_enqueue_scripts', 'template_wordpress_scripts');
+add_action('wp_enqueue_scripts', 'passaupres_theme_scripts');
+
+add_filter('use_widgets_block_editor', '__return_false');
 
 /**
  * Disable/hide items in the administration menu
  */
-function template_wordpress_remove_menus(): void
+function passaupres_theme_remove_menus(): void
 {
     remove_menu_page('edit-comments.php');
 
@@ -179,7 +181,7 @@ function template_wordpress_remove_menus(): void
     }
 }
 
-add_action('admin_menu', 'template_wordpress_remove_menus');
+add_action('admin_menu', 'passaupres_theme_remove_menus');
 
 /**
  * TWIG initialization.
