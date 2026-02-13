@@ -1,15 +1,23 @@
 :root, [data-bs-theme="dark"] {
-    --site-color-primary: #d5812b;
-    --site-color-secondary: #f0bd89;
-    --site-color-accent: #f3a14d;
-    --site-color-background: #fbf6f1;
-    --site-color-text: #171008;
+    --site-color-primary: #E6BE12;
+    --site-color-secondary: #3F544E;
+    --site-color-accent: #F5F5F1;
+    --site-color-accent--1: #F2F2EE;
+    --site-color-accent--4: #EAEAE6;
+    --site-color-accent--7: #E1E1DE;
+    --site-color-background: #F5F7F8;
+    --site-color-background--3: #E9ECEE;
+    --site-color-background--6: #DDE1E4;
+    --site-color-text: #2E2C2C;
+    --site-color-text-60: #BEBCBC;
     --site-color-black: #000000;
     --site-color-white: #FFFFFF;
 
-    --site-shadow-button: 0 1px 3px 0 color-mix(in srgb, var(--site-color-black) 10%, transparent), 0 1px 2px -1px color-mix(in srgb, var(--site-color-black) 10%, transparent);
-    --site-shadow-window: 0 20px 36px -8px color-mix(in srgb, var(--site-color-black) 10%, transparent), 0 1px 1px 0 color-mix(in srgb, var(--site-color-black) 5%, transparent);
     --site-shadow-section: 0 0 10px -1px color-mix(in srgb, var(--site-color-black) 5%, transparent), 0 0 30px 0 color-mix(in srgb, var(--site-color-black) 5%, transparent);
+    --site-shadow-comparator: 0 0 20.1px 3px color-mix(in srgb, var(--site-color-black) 50%, transparent), 0 0 64px 42px color-mix(in srgb, var(--site-color-black) 50%, transparent);
+    --site-shadow-window: 0 0 10px 0 color-mix(in srgb, var(--site-color-black) 50%, transparent), 0 0 40px 0 color-mix(in srgb, var(--site-color-black) 30%, transparent);
+    --site-shadow-pin: drop-shadow(0 2px 4px color-mix(in srgb, var(--site-color-black) 20%, transparent));
+    --site-shadow-image: drop-shadow(0 0 160px color-mix(in srgb, var(--site-color-black) 55%, transparent));
 
     /* Bootstrap */
     --bs-primary: var(--site-color-primary);
