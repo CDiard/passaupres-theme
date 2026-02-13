@@ -3,6 +3,17 @@
     --bs-btn-hover-color: var(--site-color-text);
     --bs-btn-active-color: var(--site-color-text);
     --bs-btn-disabled-color: var(--site-color-text);
+    --bs-btn-padding-y: 0.5rem;
+    --bs-btn-padding-x: 1rem;
+    --bs-btn-border-width: 0;
+    --bs-btn-border-radius: 0;
+    --bs-btn-font-family: "Atkinson Hyperlegible Next", sans-serif;
+    --bs-btn-font-size: 1rem;
+    --bs-btn-font-weight: 700;
+    --bs-btn-line-height: 1rem;
+
+    height: 2rem;
+    text-align: center;
 
     &.btn-primary {
         --bs-btn-bg: var(--site-color-primary);
@@ -13,16 +24,72 @@
         --bs-btn-active-border-color: var(--site-color-primary);
         --bs-btn-disabled-bg: var(--site-color-primary);
         --bs-btn-disabled-border-color: var(--site-color-primary);
+
+        &.btn-icon-start {
+            padding: 0.5rem 1rem 0.5rem 0.625rem;
+        }
+
+        &.btn-icon-end {
+            padding: 0.5rem 0.625rem 0.5rem 1rem;
+        }
+
+        .custom-icon {
+            width: 1.75rem;
+            height: 1.75rem;
+            fill: var(--site-color-text);
+        }
     }
 
     &.btn-secondary {
-        --bs-btn-bg: var(--site-color-secondary);
-        --bs-btn-border-color: var(--site-color-secondary);
-        --bs-btn-hover-bg: var(--site-color-secondary);
-        --bs-btn-hover-border-color: var(--site-color-secondary);
-        --bs-btn-active-bg: var(--site-color-secondary);
-        --bs-btn-active-border-color: var(--site-color-secondary);
-        --bs-btn-disabled-bg: var(--site-color-secondary);
-        --bs-btn-disabled-border-color: var(--site-color-secondary);
+        --bs-btn-color: var(--site-color-secondary);
+        --bs-btn-bg: transparent;
+        --bs-btn-border-color: transparent;
+        --bs-btn-hover-bg: transparent;
+        --bs-btn-hover-border-color: transparent;
+        --bs-btn-active-bg: transparent;
+        --bs-btn-active-border-color: transparent;
+        --bs-btn-disabled-bg: transparent;
+        --bs-btn-disabled-border-color: transparent;
+
+        position: relative;
+
+        &::after {
+            content: "";
+            width: calc(100% - 2rem);
+            height: 0;
+            position: absolute;
+            bottom: 0.28rem;
+            left: 1rem;
+            right: 1rem;
+            border: 0.75px solid var(--site-color-secondary);
+            background-color: transparent;
+        }
+
+        .custom-icon {
+            width: 1.1875rem;
+            height: 1.1875rem;
+            fill: var(--site-color-secondary);
+        }
+    }
+
+    &.btn-icon-start, &.btn-icon-end {
+        width: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.25rem;
+        position: relative;
+    }
+
+    &.btn-icon-start {
+        flex-direction: row;
+    }
+
+    &.btn-icon-end {
+        flex-direction: row-reverse;
+    }
+
+    .custom-icon {
+        aspect-ratio: 1/1;
     }
 }
