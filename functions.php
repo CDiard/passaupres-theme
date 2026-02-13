@@ -149,15 +149,6 @@ function passaupres_theme_scripts(): void
         $theme_version,
         true
     );
-
-    // Upload Bootstrap dark mode script
-    wp_enqueue_script(
-        'darkmode-js',
-        get_template_directory_uri() . '/scripts/darkmode.js',
-        [],
-        $theme_version,
-        true
-    );
 }
 
 add_action('wp_enqueue_scripts', 'passaupres_theme_scripts');

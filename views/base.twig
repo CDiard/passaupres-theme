@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html {{ language_attributes()|raw }} data-bs-theme="light">
+<html {{ language_attributes()|raw }}>
 <head>
     <meta charset="{{ bloginfo('charset') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,8 +19,6 @@
 
     {% include "components/footer.twig" %}
 </div>
-
-{% include "components/darkmode.twig" %}
 
 {{ wp_footer()|raw }}
 </body>

@@ -1,4 +1,4 @@
-:root {
+:root, [data-bs-theme="dark"] {
     --site-color-primary: #d5812b;
     --site-color-secondary: #f0bd89;
     --site-color-accent: #f3a14d;
@@ -28,17 +28,4 @@
     --e-global-typography-secondary-font-family: "Slabo Regular";
     --e-global-typography-text-font-family: "Slabo Regular";
     --e-global-typography-accent-font-family: "Slabo Regular";
-}
-
-/* Dark theme class for manual toggle */
-[data-bs-theme="dark"] {
-    --site-color-primary: #d5802a;
-    --site-color-secondary: #75420f;
-    --site-color-accent: #b05e0c;
-    --site-color-background: #100a04;
-    --site-color-text: #f7f0e8;
-
-    --site-shadow-button: 0 1px 3px 0 color-mix(in srgb, var(--site-color-black) 25%, transparent), 0 1px 2px -1px color-mix(in srgb, var(--site-color-black) 25%, transparent);
-    --site-shadow-window: 0 20px 36px -8px color-mix(in srgb, var(--site-color-black) 25%, transparent), 0 1px 1px 0 color-mix(in srgb, var(--site-color-black) 20%, transparent);
-    --site-shadow-section: 0 0 10px -1px color-mix(in srgb, var(--site-color-black) 20%, transparent), 0 0 30px 0 color-mix(in srgb, var(--site-color-black) 20%, transparent);
 }
