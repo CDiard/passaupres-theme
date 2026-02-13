@@ -1,7 +1,14 @@
 @font-face {
-    font-family: 'Lexend';
+    font-family: 'Fraunces';
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url(../assets/fonts/Lexend-VariableFont_wght.ttf) format('truetype');
+    src: url(../assets/fonts/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Atkinson Hyperlegible Next';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../assets/fonts/AtkinsonHyperlegibleNext-VariableFont_wght.ttf) format('truetype');
 }
