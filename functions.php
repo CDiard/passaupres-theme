@@ -43,6 +43,7 @@ function passaupres_theme_setup(): void
     register_nav_menus(
         array(
             'primary-menu' => esc_html__('Menu principal', 'passaupres-theme'),
+            'secondary-menu' => esc_html__('Menu secondaire', 'passaupres-theme'),
         )
     );
 

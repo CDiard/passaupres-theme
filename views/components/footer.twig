@@ -1,8 +1,36 @@
-<footer class="footer-site py-3" role="contentinfo">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <p class="text-center">&copy; {{ "now"|date("Y") }} {{ bloginfo('name') }}</p>
+<footer class="footer-site" role="contentinfo">
+    <div class="information-footer">
+        <div class="container">
+            <div class="row p-4 gy-3">
+                <div class="identity-footer col-12 col-xl-6 d-flex flex-row justify-content-center justify-content-xl-start align-items-center gap-3">
+                    {{ the_custom_logo()|raw }}
+                    <div class="d-flex flex-column justify-content-start align-items-start gap-2 position-relative">
+                        <p class="m-0"><a href="{{ home_url('/') }}" rel="home" class="stretched-link">{{ bloginfo('name') }}</a></p>
+                        <p class="h3 m-0">Hier et aujourd’hui, face à face.</p>
+                    </div>
+                </div>
+
+                <div class="links-footer col-6 col-xl-3 h-100 d-flex flex-column justify-content-start align-items-start gap-3">
+                    <p class="h3 m-0">Pages</p>
+                    {{ flat_menu('primary-menu', 'nav flex-column justify-content-start align-item-start gap-2')|raw }}
+                </div>
+
+                <div class="links-footer col-6 col-xl-3 h-100 d-flex flex-column justify-content-start align-items-start gap-3">
+                    <p class="h3 m-0">Informations</p>
+                    {{ flat_menu('secondary-menu', 'nav flex-column justify-content-start align-item-start gap-2')|raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="credit-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 p-2">
+                    <p class="subtext text-center m-0">
+                        Copyright &copy; {{ "now"|date("Y") }} {{ bloginfo('name') }} - Corentin Diard
+                    </p>
+                </div>
             </div>
         </div>
     </div>
