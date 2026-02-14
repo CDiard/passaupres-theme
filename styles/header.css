@@ -1,24 +1,59 @@
 .header-site {
-    .custom-logo-link {
-        height: max-content;
-        width: max-content;
-        display: block;
+    .logotype-header {
+        .custom-logo-link {
+            height: max-content;
+            width: max-content;
+            display: block;
 
-        .custom-logo {
-            height: 40px;
-            width: 40px;
-            aspect-ratio: 1/1;
+            .custom-logo {
+                height: 35px;
+                width: 48px;
+            }
+        }
+
+        p {
+            height: 1.5625rem;
+            line-height: 2rem;
+
+            a {
+                height: 100%;
+                display: block;
+                font-family: "Fraunces", serif;
+                font-size: 2rem;
+                font-weight: 600;
+                line-height: 1.5625rem;
+                text-decoration: none;
+                color: var(--site-color-text);
+            }
         }
     }
 
-    .name-header {
-        margin: 0;
-
-        a {
-            font-size: 2rem;
+    .menu-header .nav {
+        .nav-item {
+            height: 2rem;
+            padding: 0.5rem 1rem;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Atkinson Hyperlegible Next", sans-serif;
+            font-size: 1rem;
             font-weight: 700;
-            text-decoration: none;
-            color: var(--site-color-text);
+            line-height: 1rem;
+            text-align: center;
+            color: var(--site-color-secondary) !important;
+
+            &::after {
+                content: "";
+                width: calc(100% - 2rem);
+                height: 0;
+                position: absolute;
+                bottom: 0.28rem;
+                left: 1rem;
+                right: 1rem;
+                border: 0.75px solid var(--site-color-secondary) !important;
+                background-color: transparent;
+            }
         }
     }
 }
