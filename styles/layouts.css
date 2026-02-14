@@ -1,0 +1,14 @@
+body:not(:has(> #wpadminbar)) .content {
+    min-height: 100vh;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 4rem;
+
+    & > .footer-site {
+        margin-top: auto;
+    }
+}
