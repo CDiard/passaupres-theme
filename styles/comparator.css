@@ -15,24 +15,37 @@
         box-shadow: var(--site-shadow-comparator);
         cursor: ew-resize;
 
+        &:hover .arrows-comparator {
+            &::after {
+                transform: translate(50%, -50%) translateX(0%) scale(1.2);
+                animation: none;
+            }
+            &::before {
+                transform: translate(-50%, -50%) translateX(0%) scale(1.2);
+                animation: none;
+            }
+        }
+
+        &::before, &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
         &::before {
             content: "";
             width: 1.5rem;
             height: 2.75rem;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             background-color: var(--site-color-accent);
         }
+
         &::after {
             content: "";
             width: 1.5rem;
             height: 1.5rem;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             aspect-ratio: 1/1;
             background-color: var(--site-color-secondary);
             mask-image: url("../assets/icons/drag.svg");
@@ -40,5 +53,51 @@
             mask-repeat: no-repeat;
             mask-size: contain;
         }
+
+        .arrows-comparator {
+            &::after, &::before {
+                content: "";
+                width: 4rem;
+                height: 4rem;
+                display: block;
+                position: absolute;
+                top: 50%;
+                aspect-ratio: 1/1;
+                background-color: var(--site-color-primary);
+                mask-position: center;
+                mask-repeat: no-repeat;
+                mask-size: contain;
+                transform: translate(var(--x-translate-arrow), -50%) translateX(0%) scale(1);
+                transition: all 0.2s ease-in-out;
+                animation: arrow-animated 2s infinite;
+            }
+
+            &::after {
+                --x-translate-arrow: 50%;
+                --animated-x-translate-arrow: 15%;
+                right: -3.5rem;
+                mask-image: url("../assets/icons/arrow_forward.svg");
+            }
+
+            &::before {
+                --x-translate-arrow: -50%;
+                --animated-x-translate-arrow: -15%;
+                left: -3.5rem;
+                mask-image: url("../assets/icons/arrow_backward.svg");
+                animation: arrow-animated 2s infinite;
+            }
+        }
+    }
+}
+
+@keyframes arrow-animated {
+    0% {
+        transform: translate(var(--x-translate-arrow), -50%) translateX(0%);
+    }
+    50% {
+        transform: translate(var(--x-translate-arrow), -50%) translateX(var(--animated-x-translate-arrow));
+    }
+    100% {
+        transform: translate(var(--x-translate-arrow), -50%) translateX(0%);
     }
 }
