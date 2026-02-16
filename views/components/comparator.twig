@@ -1,0 +1,12 @@
+{% if size and position and original_image.url and original_image.label and copy_image.url and copy_image.label %}
+    <div class="comparator-site d-flex justify-content-center align-items-center position-relative overflow-hidden {{ size }}"
+         data-comparator-size="{{ position }}">
+        <img class="{{ size }}" src="{{ original_image.url }}" alt="{{ original_image.label }}">
+
+        <div class="copy-comparator h-100 position-absolute top-0 end-0 overflow-hidden z-1">
+            <img class="h-100 position-absolute top-0 end-0" src="{{ copy_image.url }}" alt="{{ copy_image.label }}">
+        </div>
+
+        <div class="slider-comparator h-100 position-absolute top-0 z-2"></div>
+    </div>
+{% endif %}

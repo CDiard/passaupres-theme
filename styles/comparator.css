@@ -1,0 +1,44 @@
+.comparator-site {
+    .copy-comparator {
+        width: calc(100% - var(--site-comparator-size));
+
+        img {
+            object-fit: cover;
+            object-position: right;
+        }
+    }
+
+    .slider-comparator {
+        width: 0.313rem;
+        left: var(--site-comparator-size);
+        background-color: var(--site-color-accent);
+        box-shadow: var(--site-shadow-comparator);
+        cursor: ew-resize;
+
+        &::before {
+            content: "";
+            width: 1.5rem;
+            height: 2.75rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--site-color-accent);
+        }
+        &::after {
+            content: "";
+            width: 1.5rem;
+            height: 1.5rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            aspect-ratio: 1/1;
+            background-color: var(--site-color-secondary);
+            mask-image: url("../assets/icons/drag.svg");
+            mask-position: center;
+            mask-repeat: no-repeat;
+            mask-size: contain;
+        }
+    }
+}

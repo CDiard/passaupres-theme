@@ -154,6 +154,13 @@ function passaupres_theme_scripts(): void
 
 add_action('wp_enqueue_scripts', 'passaupres_theme_scripts');
 
+add_filter('script_loader_tag', function ($tag, $handle, $src) {
+    if ($handle === 'theme-js') {
+        return '<script type="module" id="theme-js-js" src="' . esc_url($src) . '"></script>';
+    }
+    return $tag;
+}, 10, 3);
+
 add_filter('use_widgets_block_editor', '__return_false');
 
 /**
