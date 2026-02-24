@@ -8,6 +8,7 @@ require_once get_template_directory() . '/configs/pagination.php';
 use ElementorDeps\Twig\Environment;
 use ElementorDeps\Twig\Loader\FilesystemLoader;
 use ElementorDeps\Twig\TwigFunction;
+use ElementorDeps\Twig\Extension\DebugExtension;
 
 
 /**
@@ -26,6 +27,11 @@ $twig = new Environment($loader, [
     'cache' => (defined('WP_DEBUG') && WP_DEBUG) ? false : $cache_dir,
     'debug' => defined('WP_DEBUG') ? WP_DEBUG : false,
 ]);
+
+// Debug
+if (defined('WP_DEBUG')) {
+    $twig->addExtension(new DebugExtension());
+}
 
 
 /**
