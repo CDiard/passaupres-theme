@@ -117,11 +117,29 @@ function passaupres_theme_scripts(): void
         '5.3.8'
     );
 
+    // Load Leaflet CSS
+    wp_enqueue_style(
+        'leaflet-css',
+        get_template_directory_uri() . '/node_modules/leaflet/dist/leaflet.css'
+    );
+
+    // Load Leaflet locatecontrol CSS
+    wp_enqueue_style(
+        'leaflet-locatecontrol-css',
+        get_template_directory_uri() . '/node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css'
+    );
+
+    // Load Leaflet markercluster CSS
+    wp_enqueue_style(
+        'leaflet-markercluster-css',
+        get_template_directory_uri() . '/node_modules/leaflet.markercluster/dist/MarkerCluster.css'
+    );
+
     // Load the main theme CSS (style.css required by WordPress)
     wp_enqueue_style(
         'theme-style',
         get_stylesheet_uri(),
-        ['bootstrap-css'],
+        ['bootstrap-css', 'leaflet-css', 'leaflet-locatecontrol-css', 'leaflet-markercluster-css'],
         $theme_version
     );
 
@@ -142,14 +160,46 @@ function passaupres_theme_scripts(): void
         true
     );
 
+    // Load Leaflet JS
+    wp_enqueue_script(
+        'leaflet-js',
+        get_template_directory_uri() . '/node_modules/leaflet/dist/leaflet.js',
+        [],
+        null,
+        true
+    );
+
+    // Load Leaflet locatecontrol JS
+    wp_enqueue_script(
+        'leaflet-locatecontrol-js',
+        get_template_directory_uri() . '/node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.js',
+        [],
+        null,
+        true
+    );
+
+    // Load Leaflet markercluster JS
+    wp_enqueue_script(
+        'leaflet-markercluster-js',
+        get_template_directory_uri() . '/node_modules/leaflet.markercluster/dist/leaflet.markercluster.js',
+        [],
+        null,
+        true
+    );
+
     // Upload your custom script
     wp_enqueue_script(
         'theme-js',
         get_template_directory_uri() . '/scripts/main.js',
-        ['bootstrap-js'],
+        ['bootstrap-js', 'leaflet-js', 'leaflet-locatecontrol-js', 'leaflet-markercluster-js'],
         $theme_version,
         true
     );
+
+    wp_localize_script('theme-js', 'THEME', [
+        'uri' => get_template_directory_uri(),
+        'assets' => get_template_directory_uri() . '/assets',
+    ]);
 }
 
 add_action('wp_enqueue_scripts', 'passaupres_theme_scripts');

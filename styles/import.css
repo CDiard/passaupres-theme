@@ -9,3 +9,7 @@
 @import url('wysiwyg.css');
 @import url('pagination.css');
 @import url('comparator.css');
+@import url('map.css');
+
+/* Pages */
+@import url('home.css');
