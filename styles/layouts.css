@@ -8,6 +8,13 @@ body:not(:has(> #wpadminbar)) .content {
     justify-content: flex-start;
     gap: 4rem;
 
+    &>main {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 4rem;
+    }
+
     & > .footer-site {
         margin-top: auto;
     }
