@@ -4,29 +4,134 @@
 
 {% block content %}
 
-    <section class="header-page">
+    <section class="hook-home">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1>{{ page.title }}</h1>
+            <div class="row g-3">
+                <div class="content-hook col-12 col-lg-4 order-last order-lg-first d-flex flex-column justify-content-center align-items-start gap-4 gap-xxl-5">
+                    <div class="title-hook d-flex flex-column justify-content-center align-items-start gap-3">
+                        <h1>Du passé au présent,</h1>
+                        <h2>Hier et aujourd’hui, face à face.</h2>
+                    </div>
 
-                    {% if page.thumbnail %}
-                        <img src="{{ page.thumbnail }}" alt="{{ page.title }}">
-                    {% endif %}
+                    <p class="m-0">
+                        PassAuPrés vous permet de voyager dans le temps à travers les lieux qui vous entourent. Comparez
+                        des photos anciennes et des prises de vue actuelles réalisées au même endroit, et observez
+                        comment les paysages, les villes et les rues ont évolué au fil des années. Chaque comparaison
+                        raconte une histoire : un événement marquant, une transformation urbaine ou un souvenir oublié.
+                        Explorez librement les images, redécouvrez votre environnement et portez un nouveau regard sur
+                        le passé, confronté au présent.
+                    </p>
+
+                    <a class="btn btn-primary btn-icon-end mx-auto" href="{{ get_the_permalink(18) }}" role="button"
+                       title="Parcourir les lieux afin de trouver des publications">
+                        {{ svg_icon('arrow_right')|raw }}
+                        Parcourir les lieux
+                    </a>
+                </div>
+
+                <div class="col-12 col-lg-8 order-first order-lg-last d-flex flex-column justify-content-center align-items-center">
+                    {% include "components/comparator.twig" with {
+                        original_image,
+                        copy_image,
+                        size: 'w-100',
+                        position: 48
+                    } %}
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="content-page">
+    <section class="search-home">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <p>{{ test }}</p>
+                <div class="content-search col-12 d-flex flex-column justify-content-start align-items-center">
+                    <form class="form-search input-group" action="" method="get">
+                        <div class="form-floating">
+                            <input type="search" class="form-control" id="searchInput" placeholder="Rechercher...">
+                            <label for="searchInput">Effectuer une recherche</label>
+                        </div>
 
-                    <div class="wysiwyg">
-                        {{ page.content|raw }}
+                        <button class="btn btn-primary btn-icon-start h-100" type="submit"
+                                title="Effectuer la recherche">
+                            {{ svg_icon('search')|raw }}
+                            Rechercher
+                        </button>
+                    </form>
+
+                    <div class="map-search w-100">
+                        {% include "components/map.twig" with {map_data} %}
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% if numbers|length > 0 %}
+        <section class="numbers-home">
+            <div class="container">
+                <div class="row">
+                    <div class="content-numbers col-12 d-flex flex-column justify-content-start align-items-start">
+                        <h2>En quelques chiffres</h2>
+
+                        <div class="container-fluid p-0">
+                            <div class="row g-3">
+                                {% for number in numbers %}
+                                    {% if number.value and number.label %}
+                                        <article class="col-12 col-md-6 col-xl-3">
+                                            <div class="card-numbers w-100 h-100 d-flex flex-column align-items-center gap-3">
+                                                <p class="value-numbers m-0">{{ number.value }}</p>
+                                                <p class="m-0 text-center">{{ number.label }}</p>
+                                            </div>
+                                        </article>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="contributor-home">
+        <div class="container">
+            <div class="row g-3">
+                <div class="content-contributor col-12 col-lg-6 d-flex flex-column justify-content-start align-items-start">
+                    <h2>Contribuer à PassAuPrés</h2>
+
+                    <div>
+                        <p class="mb-2">
+                            Un <strong>contributeur</strong> est une personne qui participe activement à la mémoire visuelle
+                            de PassAuPrés. En reproduisant aujourd’hui des photographies anciennes déjà existantes, il
+                            permet de mettre en évidence l’évolution des lieux, des paysages et des environnements urbains
+                            au fil du temps. Chaque contribution enrichit la compréhension de l’histoire locale et rend
+                            visibles les transformations parfois invisibles au quotidien.
+                        </p>
+                        <p class="mb-2">
+                            Le rôle du contributeur consiste à se rendre sur un lieu précis, identifié à partir d’une photo
+                            ancienne, puis à réaliser une prise de vue actuelle depuis un point de vue aussi proche que
+                            possible de l’original. Cette démarche demande observation, précision et sens du détail, afin de
+                            proposer une comparaison fidèle et pertinente entre le passé et le présent.
+                        </p>
+                        <p class="m-0">
+                            Devenir contributeur est simple et ouvert à tous. Il suffit de se rendre sur la page dédiée aux
+                            contributeurs et de remplir le formulaire prévu à cet effet. Une fois inscrit, vous pourrez
+                            proposer vos propres photos, participer à l’enrichissement du site et prendre part à un projet
+                            collaboratif qui valorise l’histoire des lieux à travers l’image.
+                        </p>
+                    </div>
+
+                    <a class="btn btn-primary btn-icon-end mx-auto" href="{{ get_the_permalink(20) }}" role="button"
+                       title="Consulter les informations pour devenir contributeur">
+                        {{ svg_icon('arrow_right')|raw }}
+                        Devenir contributeur
+                    </a>
+                </div>
+
+                <div class="faq-contributor col-12 col-lg-6 d-flex flex-column justify-content-start align-items-start">
+                    <h2>Questions fréquentes</h2>
+
+                    {% include "components/accordion.twig" with {items: faq} %}
                 </div>
             </div>
         </div>

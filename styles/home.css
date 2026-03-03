@@ -1,0 +1,65 @@
+.hook-home .content-hook {
+    .title-hook {
+        h1 {
+            font-size: 2.62rem;
+            color: var(--site-color-secondary);
+        }
+
+        h2 {
+            font-size: 1.95rem;
+        }
+    }
+
+    & > p {
+        font-size: 1rem;
+        line-height: 1.4375rem;
+        letter-spacing: 0.01rem;
+    }
+}
+
+.search-home .content-search {
+    gap: 4rem;
+
+    .form-search {
+        width: 100%;
+        @media (min-width: 768px) {
+            width: 75%;
+        }
+        @media (min-width: 1200px) {
+            width: 50%;
+        }
+    }
+
+    .map-search {
+        height: 500px;
+    }
+}
+
+.numbers-home {
+    padding: 2rem 0;
+    background-color: var(--site-color-accent--1);
+
+    .content-numbers {
+        gap: 2rem 0;
+
+        .card-numbers {
+            padding: 2rem 0.5rem;
+            background: var(--site-color-white);
+
+            .value-numbers {
+                font-family: 'Fraunces', serif;
+                font-weight: 700;
+                font-size: 4rem;
+                line-height: 2.8125rem;
+                text-align: center;
+                color: var(--site-color-secondary);
+            }
+        }
+    }
+}
+
+.contributor-home {
+    .content-contributor, .faq-contributor {
+        gap: 2rem 0;
+    }
+}
