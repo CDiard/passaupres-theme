@@ -1,0 +1,27 @@
+.form-floating {
+    & > label {
+        padding: 1.13rem 1rem;
+        overflow: hidden;
+        font-family: "Atkinson Hyperlegible Next";
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1.25rem;
+        text-overflow: ellipsis;
+        color: var(--site-color-text);
+    }
+
+    .form-control {
+        background-color: var(--site-color-white);
+        border: 1px solid var(--site-color-text-60);
+        border-radius: 0;
+        font-family: "Atkinson Hyperlegible Next";
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1.25rem;
+        color: var(--site-color-text);
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+}
