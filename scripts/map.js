@@ -9,7 +9,6 @@ function init() {
 
     try {
         data = JSON.parse(rawData);
-        console.log(rawData)
     } catch (e) {
         console.error('Invalid map data', e);
         return;
@@ -20,6 +19,8 @@ function init() {
     const markers = createMarkers(data.markers || [], icons);
 
     map.addLayer(markers);
+
+    fitMapToMarkers(map, markers, data);
 }
 
 init();
@@ -88,4 +89,29 @@ function createMarkers(markersData = [], icons) {
     });
 
     return cluster;
+}
+
+/* Auto ZOOM */
+function fitMapToMarkers(map, markers, data) {
+    const layers = markers.getLayers();
+
+    if (!layers.length) {
+        map.setView(data.center, data.zoom);
+        return;
+    }
+
+    if (layers.length === 1) {
+        map.setView(layers[0].getLatLng(), 12);
+        return;
+    }
+
+    const bounds = L.latLngBounds(
+        layers.map(layer => layer.getLatLng())
+    );
+
+    map.fitBounds(bounds, {
+        padding: [50, 50],
+        maxZoom: 14,
+        animate: true
+    });
 }
