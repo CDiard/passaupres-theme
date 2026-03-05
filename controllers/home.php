@@ -29,7 +29,7 @@ $mapData = [
 
 // Fetch all posts
 $queryPosts = new WP_Query([
-    'post_type'      => 'post',
+    'post_type' => 'post',
     'posts_per_page' => -1,
     'post_status' => 'publish',
 ]);
@@ -128,29 +128,35 @@ $numbers = [
 ];
 
 
-// Set questions for accordion
-$faq = [
-    [
-        'title' => 'Comment comparer une photo ancienne avec une photo récente sur PassAuPrés ?',
-        'content' => 'Chaque lieu dispose d’une page dédiée où la photo ancienne et la photo récente sont présentées côte à côte. Un système de comparaison visuelle permet d’observer facilement les différences de cadrage, de paysage et d’environnement entre le passé et le présent.'
-    ],
-    [
-        'title' => 'Les photos présentes sur le site sont-elles vérifiées ou contextualisées historiquement ?',
-        'content' => 'Oui. Les contributions sont vérifiées avant publication afin d’assurer leur cohérence avec les images originales. Lorsque des informations historiques sont disponibles, elles sont ajoutées pour contextualiser le lieu, l’époque ou les événements associés.'
-    ],
-    [
-        'title' => 'Puis-je explorer les photos par ville ou directement depuis la carte ?',
-        'content' => 'Oui. PassAuPrés propose une navigation par ville ainsi qu’une carte interactive regroupant l’ensemble des lieux photographiés, afin de faciliter l’exploration géographique des comparaisons.'
-    ],
-    [
-        'title' => 'Quelle est l’origine des photos anciennes utilisées sur le site ?',
-        'content' => 'Les photos anciennes proviennent de collections publiques, d’archives, de fonds libres de droits ou de collections personnelles partagées par la communauté, lorsque leur usage est autorisé.'
-    ],
-    [
-        'title' => 'Puis-je devenir contributeur même si je ne suis pas photographe professionnel ?',
-        'content' => 'Oui. PassAuPrés est ouvert à tous. Un smartphone ou un appareil photo classique suffit, l’essentiel étant de reproduire le point de vue de la photo ancienne de la manière la plus fidèle possible.'
+// Fetch questions for accordion
+$queryFaqs = new WP_Query([
+    'post_type' => 'faq',
+    'posts_per_page' => -1,
+    'post_status' => 'publish',
+    'order' => 'ASC',
+    'orderby' => 'date',
+    'tax_query' => [
+        [
+            'taxonomy' => 'type_faq',
+            'field' => 'slug',
+            'terms' => 'accueil',
+        ]
     ]
-];
+]);
+
+$faq = [];
+
+if ($queryFaqs->have_posts()) {
+    while ($queryFaqs->have_posts()) {
+        $queryFaqs->the_post();
+
+        $faq[] = [
+            'title' => get_the_title(),
+            'content' => get_field('response'),
+        ];
+    }
+    wp_reset_postdata();
+}
 
 echo $twig->render('pages/home.twig', [
     'original_image' => $originalImage,
