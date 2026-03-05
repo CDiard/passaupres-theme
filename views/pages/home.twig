@@ -45,9 +45,9 @@
         <div class="container">
             <div class="row">
                 <div class="content-search col-12 d-flex flex-column justify-content-start align-items-center">
-                    <form class="form-search input-group" action="" method="get">
+                    <form class="form-search input-group" action="{{ get_the_permalink(18) }}" method="get">
                         <div class="form-floating">
-                            <input type="search" class="form-control" id="searchInput" placeholder="Rechercher...">
+                            <input type="search" class="form-control" id="searchInput" name="s" placeholder="Rechercher...">
                             <label for="searchInput">Effectuer une recherche</label>
                         </div>
 

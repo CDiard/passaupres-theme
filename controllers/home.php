@@ -24,6 +24,7 @@ if ($originalImageField) {
 $mapData = [
     'center' => [48.8566, 2.3522],
     'zoom' => 6,
+    'interactive' => false,
     'markers' => []
 ];
 

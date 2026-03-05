@@ -16,7 +16,7 @@ function init() {
 
     const map = createMap(mapEl, data);
     const icons = createIcons();
-    const markers = createMarkers(data.markers || [], icons);
+    const markers = createMarkers(data.markers || [], icons, data.interactive);
 
     map.addLayer(markers);
 
@@ -67,7 +67,7 @@ function createIcons() {
 }
 
 /* Create MARKERS */
-function createMarkers(markersData = [], icons) {
+function createMarkers(markersData = [], icons, interactive) {
     const cluster = L.markerClusterGroup({
         spiderfyOnMaxZoom: true,
         showCoverageOnHover: true,
@@ -79,7 +79,7 @@ function createMarkers(markersData = [], icons) {
 
         const icon = icons[marker.type] || icons.primary;
 
-        const m = L.marker([marker.lat, marker.lng], { icon });
+        const m = L.marker([marker.lat, marker.lng], { icon, interactive });
 
         if (marker.popup) {
             m.bindPopup(marker.popup);
