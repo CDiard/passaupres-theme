@@ -1,93 +1,134 @@
 <?php
 $twig = $GLOBALS['twig'];
 
-$copy_image_id = get_post_meta(get_the_ID(), 'id_copy_image', true);
-$original_image_id = get_post_meta(get_the_ID(), 'id_original_image', true);
+// Fetch copy and original images
+$copyImageField = get_field('copy_image');
+$originalImageField = get_field('original_image');
 
-if ($copy_image_id) {
-    $copy_image_url = wp_get_attachment_url($copy_image_id);
-    $copy_image_alt = get_post_meta($copy_image_id, '_wp_attachment_image_alt', true);
+if ($copyImageField) {
+    $copyImage = [
+        'url' => $copyImageField['url'],
+        'alt' => $copyImageField['alt']
+    ];
 }
 
-if ($original_image_id) {
-    $original_image_url = wp_get_attachment_url($original_image_id);
-    $original_image_alt = get_post_meta($original_image_id, '_wp_attachment_image_alt', true);
+if ($originalImageField) {
+    $originalImage = [
+        'url' => $originalImageField['url'],
+        'alt' => $originalImageField['alt']
+    ];
 }
 
-$map_data = [
+
+// Fetch markers map
+$mapData = [
     'center' => [48.8566, 2.3522],
     'zoom' => 6,
-    'markers' => [
-        [
-            'lat' => 48.8566,
-            'lng' => 2.3522,
-            'type' => 'primary',
-            'popup' => 'Paris',
-        ],
-        [
-            'lat' => 48.87701464436167,
-            'lng' => 2.3833233378022967,
-            'type' => 'primary',
-            'popup' => 'Paris 19e',
-        ],
-        [
-            'lat' => 49.28995209465912,
-            'lng' => 4.156594738558486,
-            'type' => 'secondary',
-            'popup' => 'Reims',
-        ],
-        [
-            'lat' => 48.14525638181272,
-            'lng' => -1.5871050850243384,
-            'type' => 'secondary',
-            'popup' => 'Rennes',
-        ],
-        [
-            'lat' => 47.278342418679586,
-            'lng' => -1.2860554215214992,
-            'type' => 'secondary',
-            'popup' => 'Nantes',
-        ],
-        [
-            'lat' => 48.39978236776683,
-            'lng' => -4.418408739722805,
-            'type' => 'secondary',
-            'popup' => 'Brest',
-        ],
-        [
-            'lat' => 50.950503433892344,
-            'lng' => 1.982947461008075,
-            'type' => 'secondary',
-            'popup' => 'Calais',
-        ],
-        [
-            'lat' => 48.58343917141125,
-            'lng' => 7.479166074226487,
-            'type' => 'secondary',
-            'popup' => 'Strasbourg',
-        ]
-    ]
+    'markers' => []
 ];
+
+// Fetch all posts
+$queryPosts = new WP_Query([
+    'post_type'      => 'post',
+    'posts_per_page' => -1,
+    'post_status' => 'publish',
+]);
+
+// Process query all posts
+$idPosts = [];
+$cities = [];
+
+if ($queryPosts->have_posts()) {
+    while ($queryPosts->have_posts()) {
+        $queryPosts->the_post();
+
+        // Get markers data
+        $mapData['markers'][] = [
+            'lat' => get_field('latitude'),
+            'lng' => get_field('longitude'),
+            'type' => 'primary'
+        ];
+
+        // Get number of posts
+        $idPosts[] = get_the_ID();
+
+        // Get cities array
+        $address = get_field('address');
+
+        if (!empty($address['city_address'])) {
+
+            $city = strtolower(trim($address['city_address']));
+
+            if (!in_array($city, $cities)) {
+                $cities[] = $city;
+            }
+        }
+    }
+    wp_reset_postdata();
+}
+
+// Fetch number of posts
+$totalPosts = count($idPosts);
+
+// Fetch number of cities
+$totalCities = count($cities);
+
+// Fetch the oldest post date
+$queryDate = new WP_Query([
+    'post_type' => 'post',
+    'posts_per_page' => 1,
+    'meta_key' => 'date_original_image',
+    'orderby' => 'meta_value',
+    'order' => 'ASC',
+]);
+
+$oldestArchive = null;
+
+if ($queryDate->have_posts()) {
+    $queryDate->the_post();
+
+    $date = get_field('date_original_image');
+    $year = null;
+
+    if ($date) {
+        $dt = DateTime::createFromFormat('d/m/Y', $date);
+        $year = $dt ? $dt->format('Y') : null;
+    }
+
+    $oldestArchive = $year;
+
+    wp_reset_postdata();
+}
+
+// Fetch number of users
+$queryUsers = new WP_User_Query([
+    'role__in' => ['contributor', 'author', 'editor', 'administrator'],
+    'fields' => 'ID'
+]);
+
+$countUsers = $queryUsers->get_total();
 
 $numbers = [
     [
-        'value' => 53,
-        'label' => 'Comparaisons réalisées'
+        'value' => $totalPosts ?? 0,
+        'label' => 'Comparaison' . ($totalPosts > 1 ? 's' : '') . ' réalisée' . ($totalPosts > 1 ? 's' : '')
     ],
     [
-        'value' => 1850,
+        'value' => $oldestArchive ?? 'N.C. (Non Connu)',
         'label' => 'Première archive'
     ],
     [
-        'value' => 5,
-        'label' => 'Membres contributeurs'
+        'value' => $countUsers ?? 0,
+        'label' => 'Membre' . ($countUsers > 1 ? 's' : '') . ' contributeur' . ($countUsers > 1 ? 's' : '')
     ],
     [
-        'value' => 24,
-        'label' => 'Villes explorées'
+        'value' => $totalCities ?? 0,
+        'label' => 'Ville' . ($totalCities > 1 ? 's' : '') . ' explorée' . ($totalCities > 1 ? 's' : '')
     ]
 ];
 
+
+// Set questions for accordion
 $faq = [
     [
         'title' => 'Comment comparer une photo ancienne avec une photo récente sur PassAuPrés ?',
@@ -112,15 +153,9 @@ $faq = [
 ];
 
 echo $twig->render('pages/home.twig', [
-    'original_image' => [
-        'url' => $original_image_url,
-        'label' => $original_image_alt
-    ],
-    'copy_image' => [
-        'url' => $copy_image_url,
-        'label' => $copy_image_alt
-    ],
-    'map_data' => $map_data,
+    'original_image' => $originalImage,
+    'copy_image' => $copyImage,
+    'map_data' => $mapData,
     'numbers' => $numbers,
     'faq' => $faq
 ]);
