@@ -82,7 +82,11 @@ function createMarkers(markersData = [], icons, interactive) {
         const m = L.marker([marker.lat, marker.lng], { icon, interactive });
 
         if (marker.popup) {
-            m.bindPopup(marker.popup);
+            m.bindPopup(marker.popup, {
+                auto: true,
+                autoPanPadding: [80, 80],
+                closeButton: false
+            });
         }
 
         cluster.addLayer(m);

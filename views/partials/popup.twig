@@ -1,0 +1,43 @@
+<div class="popup-map">
+    <div class="slider-popup">
+        <div id="carouselPopupAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ originalUrl }}" class="d-block w-100" alt="{{ originalAlt }}">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ copyUrl }}" class="d-block w-100" alt="{{ copyAlt }}">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselPopupAutoplaying" data-bs-slide="prev">
+                {{ svg_icon('arrow_backward')|raw }}
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselPopupAutoplaying" data-bs-slide="next">
+                {{ svg_icon('arrow_forward')|raw }}
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <p class="title-popup"><strong>{{ title }}</strong></p>
+
+    <p class="excerpt-popup">{{ excerpt }}</p>
+
+    <div class="informations-popup">
+        <div class="information-popup">
+            {{ svg_icon('calendar')|raw }}
+            <p>{{ date }}</p>
+        </div>
+
+        <div class="information-popup">
+            {{ svg_icon('person')|raw }}
+            <p>{{ author }}</p>
+        </div>
+    </div>
+
+    <a class="link-popup" href="{{ link }}" role="button" title="En savoir plus sur la publication">
+        En savoir plus
+        {{ svg_icon('arrow_right')|raw }}
+    </a>
+</div>
