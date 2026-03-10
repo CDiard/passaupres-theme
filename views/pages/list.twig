@@ -2,44 +2,143 @@
 
 {% block content %}
 
-    <section class="header-page">
+    <section class="search-list">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    {% if is_home and not is_front_page %}
-                        <h1>{{ page_title }}</h1>
-                    {% endif %}
+                <div class="content-search col-12 d-flex flex-column justify-content-start align-items-center">
+                    <form class="form-search input-group" action="{{ get_the_permalink(18) }}" method="get">
+                        <div class="form-floating">
+                            <input type="search" class="form-control" id="searchInput" name="s"
+                                   placeholder="Rechercher..." value="{{ query.search|raw }}">
+                            <label for="searchInput">Effectuer une recherche</label>
+                        </div>
+
+                        <button class="btn btn-primary btn-icon-start h-100" type="submit"
+                                title="Effectuer la recherche">
+                            {{ svg_icon('search')|raw }}
+                            Rechercher
+                        </button>
+                    </form>
+
+                    <div class="d-flex flex-row justify-content-center align-items-center gap-3">
+                        <button class="btn btn-secondary btn-icon-start" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch"
+                                title="Accèder à plus d'options de filtrage">
+                            {{ svg_icon('add')|raw }}
+                            Plus de filtres
+                        </button>
+
+                        <a class="btn btn-secondary" href="{{ get_the_permalink(18) }}" role="button"
+                           title="Réinitialiser la recherche">
+                            Réinitialiser
+                        </a>
+                    </div>
+
+                    <div class="map-search w-100 flex-column align-items-center">
+                        {% if map_data.markers|length > 0 %}
+                            {% include "components/map.twig" with {map_data} %}
+                        {% else %}
+                            <p>Aucun résultats</p>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="list-page">
-        <div class="container">
-            <div class="row g-3">
-                {% if posts|length > 0 %}
-                    {% for post in posts %}
-                        {% include "components/card.twig" %}
-                    {% endfor %}
-                {% else %}
-                    <div class="col-12">
-                        <p>Aucun article pour le moment.</p>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="false" data-bs-backdrop="true" tabindex="-1"
+         id="offcanvasSearch" aria-labelledby="offcanvasSearchLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasSearchLabel">Filtres avancés</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <div class="offcanvas-body">
+            <form class="form-advanced-search d-flex flex-column gap-3" action="{{ get_the_permalink(18) }}"
+                  method="get">
+                <div class="form-floating">
+                    <input type="search" class="form-control" id="searchInput" name="s"
+                           placeholder="Rechercher..." value="{{ query.search|raw }}">
+                    <label for="searchInput">Effectuer une recherche</label>
+                </div>
+
+                <div>
+                    <label class="form-label">Sélectionner une période</label>
+                    <div class="input-group">
+                        <span class="input-group-text">De</span>
+                        <input type="number" min="1700" max="{{ 'now'|date('Y') }}" class="form-control" name="start_year"
+                               value="{{ query.startYear|raw }}"
+                               placeholder="1914" aria-label="Année de début">
+                        <span class="input-group-text">à</span>
+                        <input type="number" min="1700" max="{{ 'now'|date('Y') }}" class="form-control" name="end_year"
+                               value="{{ query.endYear|raw }}"
+                               placeholder="1939" aria-label="Année de fin">
+                    </div>
+                </div>
+
+                {% if filters.cities|length > 0 %}
+                    <div>
+                        <label for="citySelectForm" class="form-label">Sélectionner une ville</label>
+                        <select id="citySelectForm" class="city-select" name="city">
+                            <option value="" disabled
+                                    {% if query.city is not defined or not query.city %}selected{% endif %}>
+                                Sélectionner une option
+                            </option>
+                            {% for city in filters.cities %}
+                                <option value="{{ city }}" {% if query.city == city %}selected{% endif %}>
+                                    {{ city|capitalize }}
+                                </option>
+                            {% endfor %}
+                        </select>
                     </div>
                 {% endif %}
-            </div>
-        </div>
-    </section>
 
-    {% if posts|length > constant('TEMPLATE_WP_LENGTH_LISTS') %}
-        <section class="pagination-page mt-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-center">
-                        {{ bootstrap_pagination() }}
+                {% if filters.countries|length > 0 %}
+                    <div>
+                        <label for="countrySelectForm" class="form-label">Sélectionner un pays</label>
+                        <select id="countrySelectForm" class="country-select" name="country">
+                            <option value="" disabled
+                                    {% if query.country is not defined or not query.country %}selected{% endif %}>
+                                Sélectionner une option
+                            </option>
+                            {% for country in filters.countries %}
+                                <option value="{{ country }}" {% if query.country == country %}selected{% endif %}>
+                                    {{ country|capitalize }}
+                                </option>
+                            {% endfor %}
+                        </select>
                     </div>
+                {% endif %}
+
+                {% if filters.authors|length > 0 %}
+                    <div>
+                        <label for="authorSelectForm" class="form-label">Sélectionner un auteur</label>
+                        <select id="authorSelectForm" class="author-select" name="author">
+                            <option value="" disabled
+                                    {% if query.author is not defined or not query.author %}selected{% endif %}>
+                                Sélectionner une option
+                            </option>
+                            {% for author in filters.authors %}
+                                <option value="{{ author|lower }}" {% if query.author == author|lower %}selected{% endif %}>
+                                    {{ author }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                {% endif %}
+
+                <div class="d-flex flex-row flex-wrap justify-content-center align-items-center gap-3">
+                    <a class="btn btn-secondary" href="{{ get_the_permalink(18) }}" title="Réinitialiser la recherche">
+                        Réinitialiser
+                    </a>
+
+                    <button class="btn btn-primary btn-icon-start" type="submit" title="Effectuer la recherche">
+                        {{ svg_icon('search')|raw }}
+                        Rechercher
+                    </button>
                 </div>
-            </div>
-        </section>
-    {% endif %}
+            </form>
+        </div>
+    </div>
 
 {% endblock %}

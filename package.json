@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
+    "choices.js": "^11.1.0",
     "eslint-plugin-jsdoc": "^62.7.0",
     "leaflet": "^1.9.4",
     "leaflet.locatecontrol": "^0.88.0",

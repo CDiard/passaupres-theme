@@ -1,27 +1,62 @@
-.form-floating {
-    & > label {
-        padding: 1.13rem 1rem;
-        overflow: hidden;
-        font-family: 'Atkinson Hyperlegible Next', sans-serif;
-        font-size: 0.875rem;
-        font-weight: 400;
-        line-height: 1.25rem;
-        text-overflow: ellipsis;
+.form-floating > label {
+    padding: 1.13rem 1rem;
+    overflow: hidden;
+    font-family: 'Atkinson Hyperlegible Next', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    text-overflow: ellipsis;
+    color: var(--site-color-text);
+}
+
+.form-control {
+    background-color: var(--site-color-white);
+    border: 1px solid var(--site-color-text-60);
+    border-radius: 0;
+    font-family: 'Atkinson Hyperlegible Next', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: var(--site-color-text);
+
+    &:focus {
         color: var(--site-color-text);
+        background-color: var(--site-color-white);
+        border-color: var(--site-color-primary);
+        box-shadow: none;
     }
 
-    .form-control {
+    &::placeholder {
+        color: color-mix(in srgb, var(--site-color-text) 80%, transparent);
+    }
+}
+
+.form-label, .input-group {
+    font-family: 'Atkinson Hyperlegible Next', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    color: var(--site-color-text);
+}
+
+.input-group {
+    .input-group-text {
         background-color: var(--site-color-white);
         border: 1px solid var(--site-color-text-60);
         border-radius: 0;
-        font-family: 'Atkinson Hyperlegible Next', sans-serif;
-        font-size: 0.875rem;
-        font-weight: 400;
-        line-height: 1.25rem;
-        color: var(--site-color-text);
+    }
+}
 
-        &:focus {
-            box-shadow: none;
+/* Select Choices */
+.choices {
+    .choices__inner {
+        background-color: var(--site-color-white);
+        border: 1px solid var(--site-color-text-60);
+        border-radius: 0;
+
+        .choices__placeholder {
+            opacity: 1;
+            color: color-mix(in srgb, var(--site-color-text) 80%, transparent);
         }
     }
 }

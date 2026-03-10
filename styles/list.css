@@ -1,0 +1,7 @@
+.search-list .content-search {
+    gap: 2rem;
+
+    .map-search {
+        height: 700px;
+    }
+}

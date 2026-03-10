@@ -20,18 +20,18 @@
 .search-home .content-search {
     gap: 4rem;
 
-    .form-search {
-        width: 100%;
-        @media (min-width: 768px) {
-            width: 75%;
-        }
-        @media (min-width: 1200px) {
-            width: 50%;
-        }
-    }
-
     .map-search {
         height: 500px;
+    }
+}
+
+.form-search {
+    width: 100%;
+    @media (min-width: 768px) {
+        width: 75%;
+    }
+    @media (min-width: 1200px) {
+        width: 50%;
     }
 }
 

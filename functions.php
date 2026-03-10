@@ -135,11 +135,17 @@ function passaupres_theme_scripts(): void
         get_template_directory_uri() . '/node_modules/leaflet.markercluster/dist/MarkerCluster.css'
     );
 
+    // Load Choices CSS
+    wp_enqueue_style(
+        'choices-css',
+        get_template_directory_uri() . '/node_modules/choices.js/public/assets/styles/choices.min.css'
+    );
+
     // Load the main theme CSS (style.css required by WordPress)
     wp_enqueue_style(
         'theme-style',
         get_stylesheet_uri(),
-        ['bootstrap-css', 'leaflet-css', 'leaflet-locatecontrol-css', 'leaflet-markercluster-css'],
+        ['bootstrap-css', 'leaflet-css', 'leaflet-locatecontrol-css', 'leaflet-markercluster-css', 'choices-css'],
         $theme_version
     );
 
@@ -187,11 +193,20 @@ function passaupres_theme_scripts(): void
         true
     );
 
+    // Load Choices JS
+    wp_enqueue_script(
+        'choices-js',
+        get_template_directory_uri() . '/node_modules/choices.js/public/assets/scripts/choices.min.js',
+        [],
+        null,
+        true
+    );
+
     // Upload your custom script
     wp_enqueue_script(
         'theme-js',
         get_template_directory_uri() . '/scripts/main.js',
-        ['bootstrap-js', 'leaflet-js', 'leaflet-locatecontrol-js', 'leaflet-markercluster-js'],
+        ['bootstrap-js', 'leaflet-js', 'leaflet-locatecontrol-js', 'leaflet-markercluster-js', 'choices-js'],
         $theme_version,
         true
     );

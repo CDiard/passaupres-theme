@@ -1,0 +1,8 @@
+.offcanvas {
+    background-color: var(--site-color-background);
+    color: var(--site-color-text);
+
+    .btn-close {
+        --bs-btn-close-opacity: 1;
+    }
+}

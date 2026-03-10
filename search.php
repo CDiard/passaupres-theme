@@ -7,4 +7,4 @@
  * @package PassAuPres_Theme
  */
 
-include_once 'controllers/search.php';
+include_once 'controllers/list.php';

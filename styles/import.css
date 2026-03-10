@@ -11,6 +11,8 @@
 @import url('comparator.css');
 @import url('map.css');
 @import url('accordion.css');
+@import url('offcanvas.css');
 
 /* Pages */
 @import url('home.css');
+@import url('list.css');
