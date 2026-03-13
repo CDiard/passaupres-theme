@@ -5,11 +5,12 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 require_once get_template_directory() . '/configs/pagination.php';
 
-use ElementorDeps\Twig\Environment;
-use ElementorDeps\Twig\Loader\FilesystemLoader;
-use ElementorDeps\Twig\TwigFunction;
-use ElementorDeps\Twig\Extension\DebugExtension;
-
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+use Twig\TwigFunction;
+use Twig\Extension\DebugExtension;
+use Twig\Extra\Intl\IntlExtension;
+use Twig\Extra\Intl\IntlRuntime;
 
 /**
  * ------------------------------------------------------------
@@ -33,6 +34,10 @@ if (defined('WP_DEBUG')) {
     $twig->addExtension(new DebugExtension());
 }
 
+// Intl Extension
+if (class_exists(IntlExtension::class)) {
+    $twig->addExtension(new IntlExtension());
+}
 
 /**
  * ------------------------------------------------------------

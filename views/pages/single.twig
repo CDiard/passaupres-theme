@@ -2,56 +2,177 @@
 
 {% block content %}
 
-    <section class="header-page">
+    <section class="images-single">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1>{{ post.title }}</h1>
+            <div class="row g-3">
+                <div class="container-images {{ post.image_original.type === 'portrait' ? 'portrait-images' : 'landscape-images' }} col-12 d-flex flex-column justify-content-center align-items-center position-relative">
+                    <div class="comparator-images h-auto w-auto mh-100 mw-100 d-flex justify-content-center align-items-center position-relative">
+                        {% include "components/comparator.twig" with {
+                            original_image: post.image_original,
+                            copy_image: post.image_copy,
+                            size: 'h-auto w-auto mh-100 mw-100',
+                            position: 50
+                        } %}
+                    </div>
 
-                    {% if post.thumbnail %}
-                        <img src="{{ post.thumbnail }}" alt="{{ post.title }}">
-                    {% endif %}
-
-                    <div>
-                        <span>Publié le {{ post.date }}</span>
-                        <span>par {{ post.author }}</span>
+                    <div class="background-images h-100 vw-100 position-absolute top-50 start-50 translate-middle z-0 d-flex flex-row justify-content-center align-items-center overflow-hidden">
+                        <img src="{{ post.image_original.url }}" alt="{{ post.image_original.alt }}">
+                        <img src="{{ post.image_copy.url }}" alt="{{ post.image_copy.alt }}">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="content-page">
+    <section class="context-single">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="wysiwyg">
-                        {{ post.content|raw }}
+            <div class="row gx-3 gy-5">
+                <div class="col-12 col-lg-9 h-100 d-flex flex-column gap-3">
+                    <div class="d-flex flex-column gap-3">
+                        <h1 class="title-context">{{ post.title }}</h1>
+
+                        <div class="wysiwyg">
+                            {{ post.content|raw }}
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column gap-3">
+                        <h2>Informations</h2>
+
+                        <div class="informations-context container-fluid p-0">
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6 d-flex flex-row justify-content-start align-items-center gap-2">
+                                    {{ svg_icon('calendar')|raw }}
+                                    <p class="m-0">
+                                        Date de la photo originale :
+                                        <strong>
+                                            <time datetime="{{ post.date_original|format_datetime(pattern: "yyyy-MM-dd", locale: 'fr') }}">
+                                                {{ post.date_original|format_datetime(pattern: "d MMMM yyyy", locale: 'fr') }}
+                                            </time>
+                                        </strong>
+                                    </p>
+                                </div>
+
+                                <div class="col-12 col-md-6 d-flex flex-row justify-content-start align-items-center gap-2">
+                                    {{ svg_icon('calendar')|raw }}
+                                    <p class="m-0">
+                                        Date de la photo reproduite :
+                                        <strong>
+                                            <time datetime="{{ post.date_copy|format_datetime(pattern: "yyyy-MM-dd", locale: 'fr') }}">
+                                                {{ post.date_copy|format_datetime(pattern: "d MMMM yyyy", locale: 'fr') }}
+                                            </time>
+                                        </strong>
+                                    </p>
+                                </div>
+
+                                <div class="col-12 col-md-6 d-flex flex-row justify-content-start align-items-center gap-2">
+                                    {{ svg_icon('person')|raw }}
+                                    <p class="m-0">
+                                        Auteur de la photo originale :
+                                        <strong>{{ post.author_original }}</strong>
+                                    </p>
+                                </div>
+
+                                <div class="col-12 col-md-6 d-flex flex-row justify-content-start align-items-center gap-2">
+                                    {{ svg_icon('person')|raw }}
+                                    <p class="m-0">
+                                        Auteur de la photo reproduite :
+                                        <strong>{{ post.author_copy }}</strong>
+                                    </p>
+                                </div>
+
+                                <div class="col-12 col-md-6 d-flex flex-row justify-content-start align-items-center gap-2">
+                                    {{ svg_icon('calendar_add')|raw }}
+                                    <p class="m-0">
+                                        Date de publication :
+                                        <strong>
+                                            <time datetime="{{ post.date|format_datetime(pattern: "yyyy-MM-dd HH:mm", locale: 'fr') }}">
+                                                {{ post.date|format_datetime(pattern: "d MMMM yyyy 'à' H'h'mm", locale: 'fr') }}
+                                            </time>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a class="btn btn-primary btn-icon-end mx-auto" href="{{ post.source }}" role="button"
+                           target="_blank" title="Consulter le site internet de la source">
+                            {{ svg_icon('open_in_new')|raw }}
+                            Consulter la source
+                        </a>
                     </div>
                 </div>
+
+                <aside class="col-12 col-lg-3">
+                    <div class="map-context p-2 d-flex flex-column gap-3">
+                        <div class="w-100">
+                            {% include "components/map.twig" with {map_data} %}
+                        </div>
+
+                        <div class="d-flex flex-column gap-2">
+                            <div class="d-flex flex-row justify-content-start align-items-center gap-2">
+                                {{ svg_icon('location')|raw }}
+                                <p class="m-0">
+                                    {{ post.address.numero ?? '' }}{% if post.address.numero %}&nbsp;{% endif %}{{ post.address.street|title }}, {{ post.address.zip }}&nbsp;{{ post.address.city|capitalize }}, {{ post.address.country|capitalize }}
+                                </p>
+                            </div>
+
+                            <div class="d-flex flex-row justify-content-start align-items-center gap-2">
+                                {{ svg_icon('globe_location')|raw }}
+                                <p class="m-0">{{ post.latitude }}, {{ post.longitude }}</p>
+                            </div>
+                        </div>
+
+                        <a class="btn btn-secondary btn-icon-start mx-auto" role="button"
+                           href="https://www.openstreetmap.org/search?lat={{ post.latitude }}&lon={{ post.longitude }}&zoom=16#map=16/{{ post.latitude }}/{{ post.longitude }}"
+                           target="_blank" title="Voir la position sur la carte">
+                            {{ svg_icon('map')|raw }}
+                            Voir sur la carte
+                        </a>
+                    </div>
+                </aside>
             </div>
         </div>
     </section>
 
-    <section class="pagination-page">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav class="navigation">
-                        {% if navigation.prev %}
-                            <a href="{{ navigation.prev.url }}" class="prev-post">
-                                ← {{ navigation.prev.title }}
-                            </a>
-                        {% endif %}
-                        {% if navigation.next %}
-                            <a href="{{ navigation.next.url }}" class="next-post">
-                                {{ navigation.next.title }} →
-                            </a>
-                        {% endif %}
-                    </nav>
+    {% if near_posts|length > 0 %}
+        <section class="posts-single">
+            <div class="container">
+                <div class="row">
+                    <div class="content-posts col-12 d-flex flex-column justify-content-start align-items-start">
+                        <h2>Publications à proximité</h2>
+
+                        <div class="container-fluid p-0">
+                            <div class="row g-3">
+                                {% for near_post in near_posts %}
+                                    <article class="col-12 col-md-6 col-xl-3">
+                                        <div class="card-posts w-100 h-100 p-2 d-flex flex-column align-items-center gap-2">
+                                            <div class="image-posts w-100 d-flex justify-content-center align-items-center overflow-hidden">
+                                                <img class="w-100 h-auto" src="{{ near_post.image.url }}" alt="{{ near_post.image.alt }}"/>
+                                            </div>
+
+                                            <p class="w-100 m-0"><strong>{{ near_post.title }}</strong></p>
+
+                                            <a class="btn btn-secondary btn-icon-end mx-auto mt-auto" role="button"
+                                               href="{{ near_post.link }}" title="En savoir plus sur la publication">
+                                                {{ svg_icon('arrow_right')|raw }}
+                                                En savoir plus
+                                            </a>
+                                        </div>
+                                    </article>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <a class="btn btn-primary btn-icon-end mx-auto" href="{{ get_the_permalink(18) }}" role="button"
+                           title="Parcourir l'ensemble des publications">
+                            {{ svg_icon('arrow_right')|raw }}
+                            Parcourir toutes les publications
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    {% endif %}
 
 {% endblock %}

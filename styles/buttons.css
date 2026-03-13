@@ -53,7 +53,7 @@
 
         position: relative;
 
-        &::after {
+        &::before {
             content: "";
             width: calc(100% - 2rem);
             height: 0;

@@ -1,5 +1,5 @@
 {% if size and position and original_image.url and original_image.alt and copy_image.url and copy_image.alt %}
-    <div class="comparator-site d-flex justify-content-center align-items-center position-relative overflow-hidden {{ size }}"
+    <div class="comparator-site d-flex justify-content-center align-items-center position-relative overflow-hidden z-1 {{ size }}"
          data-comparator-size="{{ position }}">
         <img class="{{ size }}" src="{{ original_image.url }}" alt="{{ original_image.alt }}">
 
