@@ -1,4 +1,10 @@
 .comparator-site {
+    img {
+        user-select: none;
+        -webkit-user-drag: none;
+        pointer-events: none;
+    }
+
     .copy-comparator {
         width: calc(100% - var(--site-comparator-size));
 
