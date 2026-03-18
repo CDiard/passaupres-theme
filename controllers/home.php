@@ -103,7 +103,7 @@ if ($queryDate->have_posts()) {
 
 // Fetch number of users
 $queryUsers = new WP_User_Query([
-    'role__in' => ['contributor', 'author', 'editor', 'administrator'],
+    'role__in' => ['contributor'],
     'fields' => 'ID'
 ]);
 

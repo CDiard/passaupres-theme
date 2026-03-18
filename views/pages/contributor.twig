@@ -1,0 +1,76 @@
+{% extends "base.twig" %}
+
+{% set page = get_page_context() %}
+
+{% block content %}
+
+    <section class="context-contributor">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-12 col-lg-6 col-xl-9 d-flex flex-column gap-3">
+                    <h1>{{ page.title }}</h1>
+
+                    <div class="wysiwyg">
+                        {{ page.content|raw }}
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6 col-xl-3">
+                    {% if page.thumbnail.url %}
+                        <div class="w-100 h-100 d-flex align-items-center justify-content-center ratio ratio-16x9">
+                            <img class="object-fit-cover" src="{{ page.thumbnail.url }}"
+                                 alt="{{ page.thumbnail.alt ?? page.title }}">
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="information-contributor">
+        <div class="container">
+            <div class="row g-3">
+                <div class="faq-information col-12 col-lg-6 d-flex flex-column">
+                    <h2>Questions fréquentes</h2>
+
+                    {% include "components/accordion.twig" with {items: faq} %}
+                </div>
+
+                <div class="members-information col-12 col-lg-6 d-flex flex-column">
+                    <h2>Les contributeurs</h2>
+
+                    {% if contributors|length > 0 %}
+                        <div class="d-flex flex-row align-items-start align-content-start flex-wrap gap-3">
+                            {% for contributor in contributors %}
+                                {% if contributor.display_name %}
+                                    <article class="member-information w-auto h-auto py-2 px-3 d-flex flex-row align-items-center gap-2">
+                                        {{ svg_icon('face')|raw }}
+                                        <p class="m-0">{{ contributor.display_name }}</p>
+                                    </article>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="m-0">Aucun contributeur trouvé</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="become-contributor">
+    <div class="container">
+        <div class="row g-3">
+            <div class="form-become col-12 d-flex flex-column">
+                <h2>Devenir contributeur</h2>
+
+                <div class="d-flex flex-column align-items-center gap-2">
+                    {{ shortcode('[forminator_form id="172"]')|raw }}
+                    <p class="subtext m-0">*Obligatoire</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 .content:has(>main .posts-single) {
     gap: 0;
 
-    section {
+    &>main {
         margin-top: 4rem;
     }
 }

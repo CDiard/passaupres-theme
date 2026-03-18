@@ -166,6 +166,16 @@ $twig->addFunction(new TwigFunction('search_form', function () use ($twig) {
 
 /**
  * ------------------------------------------------------------
+ * SHORTCODE
+ * ------------------------------------------------------------
+ */
+
+$twig->addFunction(new TwigFunction('shortcode', function ($code) {
+    return do_shortcode($code);
+}, ['is_safe' => ['html']]));
+
+/**
+ * ------------------------------------------------------------
  * BOOLEAN HELPERS
  * ------------------------------------------------------------
  */
@@ -222,11 +232,16 @@ $twig->addFunction(new TwigFunction('get_page_context', function ($post_id = nul
 
     if (!$post) return [];
 
+    $thumbnail_id  = get_post_thumbnail_id($post->ID);
+
     return [
         'id' => $post->ID,
         'title' => get_the_title($post),
         'content' => apply_filters('the_content', $post->post_content),
-        'thumbnail' => get_the_post_thumbnail_url($post, 'large'),
+        'thumbnail' => [
+            'url' => $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'large') : null,
+            'alt' => $thumbnail_id ? get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true) : null
+        ],
         'permalink' => get_permalink($post),
         'classes' => implode(' ', get_body_class()),
     ];
