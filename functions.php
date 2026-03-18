@@ -248,6 +248,13 @@ function passaupres_theme_remove_menus(): void
 add_action('admin_menu', 'passaupres_theme_remove_menus');
 
 /**
+ * Disable comments link
+ */
+add_action('admin_bar_menu', function ($wp_admin_bar) {
+    $wp_admin_bar->remove_node('comments');
+}, 999);
+
+/**
  * TWIG initialization.
  */
 add_action('after_setup_theme', function () {
