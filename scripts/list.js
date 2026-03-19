@@ -12,13 +12,19 @@ function init() {
     };
 
     const citySelect = document.querySelector('.city-select');
-    const choicesCity = new Choices(citySelect, options);
+    if (citySelect) {
+        const choicesCity = new Choices(citySelect, options);
+    }
 
     const countrySelect = document.querySelector('.country-select');
-    const choicesCountry = new Choices(countrySelect, options);
+    if (countrySelect) {
+        const choicesCountry = new Choices(countrySelect, options);
+    }
 
     const authorSelect = document.querySelector('.author-select');
-    const choicesAuthor = new Choices(authorSelect, options);
+    if (authorSelect) {
+        const choicesAuthor = new Choices(authorSelect, options);
+    }
 }
 
 init();
