@@ -44,5 +44,6 @@ $contributorUsers = $queryUsers->get_results();
 
 echo $twig->render('pages/contributor.twig', [
     'faq' => $faq,
-    'contributors' => $contributorUsers
+    'contributors' => $contributorUsers,
+    'form' => '[forminator_form id="'.TEMPLATE_WP_ID_FORM.'"]'
 ]);
