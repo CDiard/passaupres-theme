@@ -22,7 +22,7 @@
                         le passé, confronté au présent.
                     </p>
 
-                    <a class="btn btn-primary btn-icon-end mx-auto" href="{{ get_the_permalink(18) }}" role="button"
+                    <a class="btn btn-primary btn-icon-end mx-auto" href="{{ get_the_permalink(config.search) }}" role="button"
                        title="Parcourir les lieux afin de trouver des publications">
                         {{ svg_icon('arrow_right')|raw }}
                         Parcourir les lieux
@@ -45,7 +45,7 @@
         <div class="container">
             <div class="row">
                 <div class="content-search col-12 d-flex flex-column justify-content-start align-items-center">
-                    <form class="form-search input-group" action="{{ get_the_permalink(18) }}" method="get">
+                    <form class="form-search input-group" action="{{ get_the_permalink(config.search) }}" method="get">
                         <div class="form-floating">
                             <input type="search" class="form-control" id="searchInput" name="s" placeholder="Rechercher...">
                             <label for="searchInput">Effectuer une recherche</label>
@@ -121,7 +121,7 @@
                         </p>
                     </div>
 
-                    <a class="btn btn-primary btn-icon-end mx-auto" href="{{ get_the_permalink(20) }}" role="button"
+                    <a class="btn btn-primary btn-icon-end mx-auto" href="{{ get_the_permalink(config.contributor) }}" role="button"
                        title="Consulter les informations pour devenir contributeur">
                         {{ svg_icon('arrow_right')|raw }}
                         Devenir contributeur

@@ -41,6 +41,18 @@ if (class_exists(IntlExtension::class)) {
 
 /**
  * ------------------------------------------------------------
+ * Global ID pages
+ * ------------------------------------------------------------
+ */
+
+$twig->addGlobal('config', [
+    'home'        => TEMPLATE_WP_ID_HOME,
+    'contributor' => TEMPLATE_WP_ID_CONTRIBUTOR,
+    'search'      => TEMPLATE_WP_ID_SEARCH
+]);
+
+/**
+ * ------------------------------------------------------------
  * UTIL : Capture function output (for echo-based WP functions)
  * ------------------------------------------------------------
  */
