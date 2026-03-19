@@ -14,6 +14,7 @@
 
     height: 2rem;
     text-align: center;
+    transition: all .3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     &.btn-primary {
         --bs-btn-bg: var(--site-color-primary);
@@ -24,6 +25,30 @@
         --bs-btn-active-border-color: var(--site-color-primary);
         --bs-btn-disabled-bg: var(--site-color-primary);
         --bs-btn-disabled-border-color: var(--site-color-primary);
+
+        z-index: 0;
+
+        &:hover {
+            transform: scale(1.16);
+
+            &::before {
+                width: calc(100% - (2 * 0.188rem));
+                inset: 0.188rem;
+                background-color: var(--site-color-background);
+                z-index: -1;
+            }
+        }
+
+        &::before {
+            content: "";
+            width: 0;
+            height: calc(100% - (2 * 0.188rem));
+            position: absolute;
+            left: 0;
+            background-color: transparent;
+            transition: all .3s ease-in-out;
+            z-index: 0;
+        }
 
         &.btn-icon-start {
             padding: 0.5rem 1rem 0.5rem 0.625rem;
@@ -52,6 +77,24 @@
         --bs-btn-disabled-border-color: transparent;
 
         position: relative;
+        z-index: 0;
+
+        &:hover {
+            color: var(--site-color-white);
+
+            &::before {
+                width: 100%;
+                height: 100%;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: -1;
+            }
+
+            .custom-icon {
+                fill: var(--site-color-white);
+            }
+        }
 
         &::before {
             content: "";
@@ -62,13 +105,16 @@
             left: 1rem;
             right: 1rem;
             border: 0.75px solid var(--site-color-secondary);
-            background-color: transparent;
+            background-color: var(--site-color-secondary);
+            transition: all .3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 0;
         }
 
         .custom-icon {
             width: 1.1875rem;
             height: 1.1875rem;
             fill: var(--site-color-secondary);
+            transition: all .3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
     }
 

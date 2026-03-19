@@ -21,14 +21,9 @@
         box-shadow: var(--site-shadow-comparator);
         cursor: ew-resize;
 
-        &:hover .arrows-comparator {
-            &::after {
-                transform: translate(50%, -50%) translateX(0%) scale(1.2);
-                animation: none;
-            }
-            &::before {
-                transform: translate(-50%, -50%) translateX(0%) scale(1.2);
-                animation: none;
+        &:hover {
+            &::before, &::after {
+                transform: translate(-50%, -50%) scale(1.16);
             }
         }
 
@@ -39,6 +34,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            transition: all .3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         &::before {
@@ -74,7 +70,7 @@
                 mask-repeat: no-repeat;
                 mask-size: contain;
                 transform: translate(var(--x-translate-arrow), -50%) translateX(0%) scale(1);
-                transition: all 0.2s ease-in-out;
+                transition: all .3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
                 animation: arrow-animated 2s infinite;
             }
 

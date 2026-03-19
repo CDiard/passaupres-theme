@@ -183,8 +183,27 @@
                     background-color: transparent;
                     border: none;
                     position: relative;
+                    z-index: 0;
+                    transition: all .3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-                    &::after {
+                    &:hover {
+                        color: var(--site-color-white);
+
+                        &::before {
+                            width: 100%;
+                            height: 100%;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            z-index: -1;
+                        }
+
+                        .custom-icon {
+                            fill: var(--site-color-white);
+                        }
+                    }
+
+                    &::before {
                         content: "";
                         width: calc(100% - 2rem);
                         height: 0;
@@ -193,7 +212,9 @@
                         left: 1rem;
                         right: 1rem;
                         border: 0.75px solid var(--site-color-secondary);
-                        background-color: transparent;
+                        background-color: var(--site-color-secondary);
+                        transition: all .3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                        z-index: 0;
                     }
 
                     svg {
