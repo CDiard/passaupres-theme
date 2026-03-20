@@ -10,7 +10,7 @@
                         {% include "components/comparator.twig" with {
                             original_image: post.image_original,
                             copy_image: post.image_copy,
-                            size: 'h-auto w-auto mh-100 mw-100',
+                            size: post.image_original.type === 'portrait' ? 'h-100 w-auto mh-100 mw-100' : 'h-auto w-auto mh-100 mw-100',
                             position: 50
                         } %}
                     </div>
