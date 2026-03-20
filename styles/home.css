@@ -26,6 +26,10 @@ html:has(.hook-home) {
 
     .map-search {
         height: 500px;
+
+        * {
+            cursor: pointer;
+        }
     }
 }
 

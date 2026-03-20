@@ -59,7 +59,9 @@
                     </form>
 
                     <div class="map-search w-100">
-                        {% include "components/map.twig" with {map_data} %}
+                        <a href="{{ get_the_permalink(config.search) }}" title="Consulter la carte des publications">
+                            {% include "components/map.twig" with {map_data} %}
+                        </a>
                     </div>
                 </div>
             </div>
