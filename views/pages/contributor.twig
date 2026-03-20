@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row g-3">
                 <div class="col-12 col-lg-6 col-xl-9 d-flex flex-column gap-3">
-                    <h1>{{ page.title }}</h1>
+                    <h1>{{ page.title|raw }}</h1>
 
                     <div class="wysiwyg">
                         {{ page.content|raw }}
@@ -45,7 +45,7 @@
                                 {% if contributor.display_name %}
                                     <article class="member-information w-auto h-auto py-2 px-3 d-flex flex-row align-items-center gap-2">
                                         {{ svg_icon('face')|raw }}
-                                        <p class="m-0">{{ contributor.display_name }}</p>
+                                        <p class="m-0">{{ contributor.display_name|raw }}</p>
                                     </article>
                                 {% endif %}
                             {% endfor %}

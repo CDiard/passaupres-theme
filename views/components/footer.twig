@@ -5,7 +5,7 @@
                 <div class="identity-footer col-12 col-xl-6 d-flex flex-row justify-content-center justify-content-xl-start align-items-center gap-3">
                     {{ the_custom_logo()|raw }}
                     <div class="d-flex flex-column justify-content-start align-items-start gap-2 position-relative">
-                        <p class="m-0"><a href="{{ home_url('/') }}" rel="home" class="stretched-link">{{ bloginfo('name') }}</a></p>
+                        <p class="m-0"><a href="{{ home_url('/') }}" rel="home" class="stretched-link">{{ bloginfo('name')|raw }}</a></p>
                         <p class="h3 m-0">Hier et aujourd’hui, face à face.</p>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-12 p-2">
                     <p class="subtext text-center m-0">
-                        Copyright &copy; {{ "now"|date("Y") }} {{ bloginfo('name') }} - Corentin Diard
+                        Copyright &copy; {{ "now"|date("Y") }} {{ bloginfo('name')|raw }} - Corentin Diard
                     </p>
                 </div>
             </div>

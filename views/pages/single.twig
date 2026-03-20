@@ -16,8 +16,8 @@
                     </div>
 
                     <div class="background-images h-100 vw-100 position-absolute top-50 start-50 translate-middle z-0 d-flex flex-row justify-content-center align-items-center overflow-hidden">
-                        <img src="{{ post.image_original.url }}" alt="{{ post.image_original.alt }}">
-                        <img src="{{ post.image_copy.url }}" alt="{{ post.image_copy.alt }}">
+                        <img src="{{ post.image_original.url }}" alt="{{ post.image_original.alt|raw }}">
+                        <img src="{{ post.image_copy.url }}" alt="{{ post.image_copy.alt|raw }}">
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
             <div class="row gx-3 gy-5">
                 <div class="col-12 col-lg-9 h-100 d-flex flex-column gap-3">
                     <div class="d-flex flex-column gap-3">
-                        <h1 class="title-context">{{ post.title }}</h1>
+                        <h1 class="title-context">{{ post.title|raw }}</h1>
 
                         <div class="wysiwyg">
                             {{ post.content|raw }}
@@ -69,7 +69,7 @@
                                     {{ svg_icon('person')|raw }}
                                     <p class="m-0">
                                         Auteur de la photo originale :
-                                        <strong>{{ post.author_original }}</strong>
+                                        <strong>{{ post.author_original|raw }}</strong>
                                     </p>
                                 </div>
 
@@ -77,7 +77,7 @@
                                     {{ svg_icon('person')|raw }}
                                     <p class="m-0">
                                         Auteur de la photo reproduite :
-                                        <strong>{{ post.author_copy }}</strong>
+                                        <strong>{{ post.author_copy|raw }}</strong>
                                     </p>
                                 </div>
 
@@ -148,10 +148,10 @@
                                     <article class="col-12 col-md-6 col-xl-3">
                                         <div class="card-posts w-100 h-100 p-2 d-flex flex-column align-items-center gap-2">
                                             <div class="image-posts w-100 d-flex justify-content-center align-items-center overflow-hidden">
-                                                <img class="w-100 h-auto" src="{{ near_post.image.url }}" alt="{{ near_post.image.alt }}"/>
+                                                <img class="w-100 h-auto" src="{{ near_post.image.url }}" alt="{{ near_post.image.alt|raw }}"/>
                                             </div>
 
-                                            <p class="w-100 m-0"><strong>{{ near_post.title }}</strong></p>
+                                            <p class="w-100 m-0"><strong>{{ near_post.title|raw }}</strong></p>
 
                                             <a class="btn btn-secondary btn-icon-end mx-auto mt-auto" role="button"
                                                href="{{ near_post.link }}" title="En savoir plus sur la publication">
