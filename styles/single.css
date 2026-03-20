@@ -1,3 +1,7 @@
+html:has(.posts-single) {
+    overflow-x: hidden;
+}
+
 .content:has(>main .posts-single) {
     gap: 0;
 
