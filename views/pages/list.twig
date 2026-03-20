@@ -24,13 +24,12 @@
                         <button class="btn btn-secondary btn-icon-start" type="button" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch"
                                 title="Accèder à plus d'options de filtrage">
-                            {{ svg_icon('add')|raw }}
-                            Plus de filtres
+                            <span>{{ svg_icon('add')|raw }} Plus de filtres</span>
                         </button>
 
                         <a class="btn btn-secondary" href="{{ get_the_permalink(config.search) }}" role="button"
                            title="Réinitialiser la recherche">
-                            Réinitialiser
+                            <span>Réinitialiser</span>
                         </a>
                     </div>
 
@@ -129,7 +128,7 @@
 
                 <div class="d-flex flex-row flex-wrap justify-content-center align-items-center gap-3">
                     <a class="btn btn-secondary" href="{{ get_the_permalink(config.search) }}" title="Réinitialiser la recherche">
-                        Réinitialiser
+                        <span>Réinitialiser</span>
                     </a>
 
                     <button class="btn btn-primary btn-icon-start" type="submit" title="Effectuer la recherche">

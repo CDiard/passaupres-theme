@@ -126,8 +126,7 @@
                         <a class="btn btn-secondary btn-icon-start mx-auto" role="button"
                            href="https://www.openstreetmap.org/search?lat={{ post.latitude }}&lon={{ post.longitude }}&zoom=16#map=16/{{ post.latitude }}/{{ post.longitude }}"
                            target="_blank" title="Voir la position sur la carte">
-                            {{ svg_icon('map')|raw }}
-                            Voir sur la carte
+                            <span>{{ svg_icon('map')|raw }} Voir sur la carte</span>
                         </a>
                     </div>
                 </aside>
@@ -146,17 +145,16 @@
                             <div class="row g-3">
                                 {% for near_post in near_posts %}
                                     <article class="col-12 col-md-6 col-xl-3">
-                                        <div class="card-posts w-100 h-100 p-2 d-flex flex-column align-items-center gap-2">
+                                        <div class="card-posts w-100 h-100 p-2 d-flex flex-column align-items-center position-relative gap-2">
                                             <div class="image-posts w-100 d-flex justify-content-center align-items-center overflow-hidden">
                                                 <img class="w-100 h-auto" src="{{ near_post.image.url }}" alt="{{ near_post.image.alt|raw }}"/>
                                             </div>
 
                                             <p class="w-100 m-0"><strong>{{ near_post.title|raw }}</strong></p>
 
-                                            <a class="btn btn-secondary btn-icon-end mx-auto mt-auto" role="button"
+                                            <a class="btn btn-secondary btn-icon-end stretched-link mx-auto mt-auto" role="button"
                                                href="{{ near_post.link }}" title="En savoir plus sur la publication">
-                                                {{ svg_icon('arrow_right')|raw }}
-                                                En savoir plus
+                                                <span>{{ svg_icon('arrow_right')|raw }} En savoir plus</span>
                                             </a>
                                         </div>
                                     </article>
